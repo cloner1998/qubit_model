@@ -19,7 +19,7 @@ def create_left_hamiltonian(numberOfQubits):
         hamiltonian += -1.05 * qt.tensor([sx if j == i else qt.qeye(2) for j in range(numberOfQubits)])
         hamiltonian += 0.5 * qt.tensor([sz if j == i else qt.qeye(2) for j in range(numberOfQubits)])
 
-    # Last qubit single terms
+    # Last qubit single terms beacuse of i + 1 in interaction terms that can not exceed 10
     hamiltonian += -1.05 * qt.tensor([sx if j == numberOfQubits - 1 else qt.qeye(2) for j in range(numberOfQubits)])
     hamiltonian += 0.5 * qt.tensor([sz if j == numberOfQubits - 1 else qt.qeye(2) for j in range(numberOfQubits)])
 
