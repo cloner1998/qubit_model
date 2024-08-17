@@ -1,7 +1,9 @@
 
 
-def mutual_information(rho, qubits):
-    rho_A = rho.ptrace([0, 1, qubits, qubits + 1])
-    rho_1 = rho_A.ptrace([0, 2])
-    rho_2 = rho_A.ptrace([1, 3])
-    return rho_A.entropy() - rho_1.entropy() - rho_2.entropy()
+def mutual_information(densityMetrixOfAllSystem, qubits):
+    #It traces out all qubits except the first two qubits of L (indices 0 and 1)
+    #and their corresponding qubits in R (indices N and N+1).
+    dm_A = densityMetrixOfAllSystem.ptrace([0, 1, qubits-1, qubits])
+    dm_1 = dm_A.ptrace([0, 2])
+    dm_2 = dm_A.ptrace([1, 3])
+    return dm_1.entropy() + dm_2.entropy() - dm_A.entropy()
