@@ -1,4 +1,9 @@
-from plots import mutual_information_plot, sprin_spin_correlation_plot
+from config import creatLeftHamiltonian
+from startup import startup
+import qutip as qt
+
+from startup.startup import identity, hamiltonian
+
 if __name__ == '__main__':
-    mutual_information_plot.mutual_information_plot()
-    sprin_spin_correlation_plot.spin_spin_correlation_plot()
+    startup.spin_spin_correlation_plot()
+    startup.mutual_information_plot()

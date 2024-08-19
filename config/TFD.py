@@ -1,5 +1,6 @@
 from config import creatLeftHamiltonian
 import numpy as np
+import qutip as qt
 
 
 def termo_field_double(hamiltonian_left, beta=1.0):
