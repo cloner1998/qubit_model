@@ -7,19 +7,22 @@ import matplotlib.pyplot as plt
 matplotlib.use('TkAgg')
 
 # make hamiltonian : H_l×I + I×H_l
+# not bad in performance
 qubits = 6
 left_hamiltonian = creatLeftHamiltonian.create_left_hamiltonian(qubits)
 identity = qt.qeye([2] * qubits)
 hamiltonian = qt.tensor(left_hamiltonian, identity) + qt.tensor(identity, left_hamiltonian)
 
 # make TFD
+# not bad in performance
 psi_0 = TFD.termo_field_double(left_hamiltonian, beta=1.0)
 
 # define perturbation
+# not bad in performance
 perturbation = perturbation_function.perturbation_function(qubits)
 
 # time evolution
-t_list = np.linspace(start=1, stop=10)
+t_list = np.linspace(start=1, stop=10, num=10)
 mutual_information_list = []
 spins_spin_correlation_list = []
 
@@ -55,9 +58,12 @@ def spin_spin_info_list():
     return spins_spin_correlation_list
 
 
+ss_list = spin_spin_info_list()
+
+
 def spin_spin_correlation_plot():
     plt.figure(figsize=(10, 6))
-    plt.plot(spins_spin_correlation_list, label='Spin-Spin Correlation')
+    plt.plot(ss_list, label='Spin-Spin Correlation')
     plt.xlabel('tw')
     plt.ylabel('Value')
     plt.legend()
@@ -65,9 +71,12 @@ def spin_spin_correlation_plot():
     plt.show()
 
 
+m_list = mutual_info_list()
+
+
 def mutual_information_plot():
     plt.figure(figsize=(10.0, 6.0))
-    plt.plot(mutual_information_list, label='Mutual Information')
+    plt.plot(m_list, label='Mutual Information')
     plt.xlabel('tw')
     plt.ylabel('Value')
     plt.legend()

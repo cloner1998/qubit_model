@@ -8,12 +8,14 @@ def termo_field_double(hamiltonian_left, beta=1.0):
     eigenvalues, eigenvectors = hamiltonian_left.eigenstates()
 
     # Calculate partition function
-    Z = sum([np.exp(-beta * e) for e in eigenvalues])
+    exp_const = -beta
+    partition_function_terms_vector = np.exp(exp_const * eigenvalues)
+    Z = np.sum(partition_function_terms_vector)
 
     # Create the thermofield double state
-    psi = sum([np.exp(-beta * e / 2) * qt.tensor(v, v.conj())
+    exp_const_2 = exp_const/2.0
+    psi = np.sum([np.exp(exp_const_2 * e) * qt.tensor(v, v.conj())
                for e, v in zip(eigenvalues, eigenvectors)])
 
     # Normalize the state
     return (1 / np.sqrt(Z)) * psi.unit()
-
