@@ -3,7 +3,7 @@ import numpy as np
 import qutip as qt
 
 
-def termo_field_double(hamiltonian_left, beta=1.0):
+def thermo_field_double(hamiltonian_left, beta=1.0):
     # Get eigenvalues and eigenvectors of H_L
     eigenvalues, eigenvectors = hamiltonian_left.eigenstates()
 

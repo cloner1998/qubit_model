@@ -28,6 +28,7 @@ spins_spin_correlation_list = []
 
 
 def mutual_info_list():
+    print("i am here")
     for t in t_list:
         # Apply perturbation in the past
         psi_t = time_evolution.time_evolution(psi_0, hamiltonian, -t)
@@ -44,6 +45,7 @@ def mutual_info_list():
 
 
 def spin_spin_info_list():
+    print("i am here now")
     for t in t_list:
         # Apply perturbation in the past
         psi_t = time_evolution.time_evolution(psi_0, hamiltonian, -t)
