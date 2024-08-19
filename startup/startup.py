@@ -6,7 +6,8 @@ from config import creatLeftHamiltonian, TFD, spins_spin_correlation, mutual_inf
 # make hamiltonian : H_l×I + I×H_l
 qubits = 10
 left_hamiltonian = creatLeftHamiltonian.create_left_hamiltonian(qubits)
-hamiltonian = qt.tensor(left_hamiltonian, qt.qeye(2 ** qubits)) + qt.tensor(qt.qeye(2 ** qubits), left_hamiltonian)
+identity = qt.qeye(2**10)
+hamiltonian = qt.tensor(left_hamiltonian, identity) + qt.tensor(identity, left_hamiltonian)
 
 # make TFD
 psi_0 = TFD.termo_field_double(left_hamiltonian, beta=1.0)
