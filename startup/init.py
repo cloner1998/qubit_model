@@ -1,6 +1,6 @@
 import numpy as np
 import qutip as qt
-
+from qutip.core import Qobj
 import config.time_evolution
 from config import creatLeftHamiltonian, TFD, spins_spin_correlation, mutual_information, perturbation_function, \
     time_evolution
@@ -11,7 +11,7 @@ matplotlib.use('TkAgg')
 # make hamiltonian : H_l×I + I×H_l
 # not bad in performance
 qubits = 5
-left_hamiltonian = creatLeftHamiltonian.create_left_hamiltonian(qubits)
+left_hamiltonian: Qobj = creatLeftHamiltonian.create_left_hamiltonian(qubits)
 identity = qt.qeye([2] * qubits)
 hamiltonian = qt.tensor(left_hamiltonian, identity) + qt.tensor(identity, left_hamiltonian)
 
